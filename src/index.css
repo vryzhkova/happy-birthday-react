@@ -1,13 +1,51 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  src: url('fonts/open-sans-v29-latin_cyrillic-700.woff2') format(woff2),
+  url('fonts/open-sans-v29-latin_cyrillic-700.woff') format(woff)
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  src: url('fonts/open-sans-v29-latin_cyrillic-regular.woff2') format(woff2),
+  url('fonts/open-sans-v29-latin_cyrillic-regular.woff') format(woff)
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f1fffc;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
