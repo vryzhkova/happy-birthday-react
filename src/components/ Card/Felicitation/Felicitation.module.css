@@ -1,0 +1,9 @@
+.felicitation {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: max(3em, min(calc(100vw * 3 / 140), 6em));
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
