@@ -1,15 +1,20 @@
-import { useContext, useState } from 'react';
-import { holidaysContext } from '../../../context/holidaysContext';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { holidaysContext } from '../../../context/holidaysContext'
 import style from './Choices.module.css';
+import { setHoliday } from '../../../store/holidaysSlice'
+import { useContext } from 'react';
 
 const Choices = () => {
     const [isOpenChoisces, setIsOpenChoisces] = useState(false);
-    const {holidays, holiday, changeHoliday} = useContext(holidaysContext);
+    const {holiday} = useSelector(state => state.holidays);
+    const dispatch = useDispatch();
+    const {holidays} = useContext(holidaysContext);
 
     const toggleChoises = () => {
         setIsOpenChoisces(!isOpenChoisces)
     };
-    
+
     return (
     <div className={style.wrapper}>
         <button className={style.button} onClick = {toggleChoises}>{holidays[holiday] || 'Выбрать праздник'}</button>
@@ -20,7 +25,7 @@ const Choices = () => {
                         className={style.item} 
                         key={item[0]}
                         onClick={() => {
-                            changeHoliday(item[0]);
+                            dispatch(setHoliday(item[0]));
                             toggleChoises();
                         }}
                         >
