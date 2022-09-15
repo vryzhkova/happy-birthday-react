@@ -21,5 +21,5 @@ export const useFetch = (url) => {
         })()
     }, [url]);
 
-    return [data, error]
+    return [data, error];
 }
