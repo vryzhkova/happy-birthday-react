@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Choices.module.css';
-import { fetchHolidays, setHoliday } from '../../../store/holidaysSlice';
+import { fetchHolidays } from '../../../store/holidaysSlice';
 import { fetchText } from '../../../store/textSlice';
+import { fetchImage } from '../../../store/imageSlice';
+import { NavLink, useParams} from "react-router-dom";
 
 const Choices = () => {
     const [isOpenChoisces, setIsOpenChoisces] = useState(false);
-    const { holiday, holidays, loading } = useSelector(state => state.holidays);
+    const { holidays, loading } = useSelector(state => state.holidays);
     const dispatch = useDispatch();
-
-    
+    const {holiday} = useParams(); 
 
     const toggleChoises = () => {
         if(loading !== 'success') {
@@ -20,9 +21,11 @@ const Choices = () => {
 
     useEffect(() => {
         dispatch(fetchHolidays());
-}, [dispatch])
-
-console.log(holidays)
+        if (holiday) {
+            dispatch(fetchText(holiday));
+            dispatch(fetchImage(holiday))
+        }
+}, [dispatch, holiday])
 
     return (
     <div className={style.wrapper}>
@@ -36,12 +39,14 @@ console.log(holidays)
                         className={style.item} 
                         key={item[0]}
                         onClick={() => {
-                            dispatch(setHoliday(item[0]));
-                            dispatch(fetchText(item[0]));
                             toggleChoises();
                         }}
                         >
-                            {item[1]}
+                        <NavLink 
+                            to={`card/${item[0]}`}
+                            className={({isActive}) => (isActive ? style.linkActive : '')}
+                            >{item[1]}
+                        </NavLink>
                     </li>
                 ))}
             </ul>
